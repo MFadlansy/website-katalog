@@ -29,16 +29,15 @@ Sebuah aplikasi **Website Katalog Produk** modern yang dirancang untuk menampilk
 * **Backend Framework**: [Laravel 11](https://laravel.com/)
 * **Admin Panel**: [Filament PHP](https://filamentphp.com/)
 * **Frontend Styling**: [Tailwind CSS](https://tailwindcss.com/)
-* **Database**: MySQL / MariaDB
-* **Scripting**: Vite (untuk aset build)
+* **Database**: MySQL 
 
 ---
 
-## 📸 Tangkapan Layar (Screenshots)
+<!-- ## 📸 Tangkapan Layar (Screenshots)
 
 | Halaman Depan | Detail Produk | Panel Admin |
 |:---:|:---:|:---:|
-| ![Home](https://placehold.co/300x200?text=Frontend+Home) | ![Detail](https://placehold.co/300x200?text=Product+Detail) | ![Admin](https://placehold.co/300x200?text=Filament+Dashboard) |
+| ![Home](https://placehold.co/300x200?text=Frontend+Home) | ![Detail](https://placehold.co/300x200?text=Product+Detail) | ![Admin](https://placehold.co/300x200?text=Filament+Dashboard) | -->
 
 ---
 
@@ -50,7 +49,6 @@ Ikuti langkah-langkah berikut untuk menjalankan proyek ini di komputer lokal And
 Pastikan Anda telah menginstal:
 * PHP >= 8.2
 * Composer
-* Node.js & NPM
 
 ### Langkah-langkah
 
@@ -94,28 +92,12 @@ Pastikan Anda telah menginstal:
     php artisan migrate --seed
     ```
 
-6.  **Build Aset Frontend**
-    ```bash
-    npm run build
-    ```
-
-7.  **Jalankan Server**
+6.  **Jalankan Server**
     ```bash
     php artisan serve
     ```
 
     Buka browser Anda dan akses: `http://127.0.0.1:8000`
-
----
-
-## 🔐 Akun Login Admin
-
-Jika Anda menggunakan `DatabaseSeeder` bawaan, berikut adalah kredensial default untuk masuk ke `/admin`:
-
-* **Email**: `admin@admin.com`
-* **Password**: `password`
-
-*(Catatan: Segera ganti password setelah login demi keamanan!)*
 
 ---
 
