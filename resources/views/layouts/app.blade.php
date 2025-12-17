@@ -98,5 +98,27 @@
         </div>
     </footer>
 
+    <script>
+        // 1. Reset Scroll Position
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        window.scrollTo(0, 0);
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // 2. Deteksi Reload
+            const entries = performance.getEntriesByType("navigation");
+            const isReload = (entries.length > 0 && entries[0].type === 'reload') 
+                          || (window.performance && window.performance.navigation && window.performance.navigation.type === 1);
+
+            // 3. Cek Status Home (Versi Anti-Merah di Editor)
+            const isHomePage = "{{ request()->routeIs('home') }}" === "1";
+
+            // 4. Redirect jika bukan home dan hasil reload
+            if (!isHomePage && isReload) {
+                window.location.href = "{{ route('home') }}";
+            }
+        });
+    </script>
 </body>
 </html>
