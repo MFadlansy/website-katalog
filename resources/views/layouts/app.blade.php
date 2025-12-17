@@ -50,7 +50,7 @@
                     <div class="hidden md:flex space-x-8 text-sm uppercase tracking-wide text-gray-500">
                         <a href="{{ route('home') }}" class="hover:text-black transition">Home</a>
                         <a href="{{ route('shop') }}" class="hover:text-black transition">Shop</a>
-                        <a href="#" class="hover:text-black transition">About</a>
+                        <a href="{{ route('home') }}#about" class="hover:text-black transition">About</a>
                     </div>
                 </div>
 
