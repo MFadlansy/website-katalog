@@ -13,7 +13,8 @@ class Product extends Model
     protected $casts = [
         'images' => 'array',
         'is_active' => 'boolean',
-        'is_featured' => 'boolean'
+        'is_featured' => 'boolean',
+        'stock' => 'integer'
     ];
 
     public function category(): BelongsTo

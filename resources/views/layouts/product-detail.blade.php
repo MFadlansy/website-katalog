@@ -29,7 +29,17 @@
             <div class="sticky top-24">
                 <h1 class="font-serif text-3xl md:text-4xl text-brand-black mb-2">{{ $product->name }}</h1>
                 <p class="text-xl text-gray-600 font-serif mb-6">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-
+                <div class="mb-6">
+                    @if($product->stock <= 5)
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-red-500 bg-red-50 px-2 py-1">
+                            Sisa Sedikit: {{ $product->stock }} Unit
+                        </span>
+                    @else
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-green-600 bg-green-50 px-2 py-1">
+                            Stok Tersedia: {{ $product->stock }} Unit
+                        </span>
+                    @endif
+                </div>
                 <div class="border-t border-b border-gray-100 py-6 mb-8 text-gray-600 text-sm leading-relaxed">
                     {!! $product->description !!}
                 </div>

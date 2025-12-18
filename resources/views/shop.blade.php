@@ -68,6 +68,11 @@
                                     Rp {{ number_format($product->price, 0, ',', '.') }}
                                 </p>
                             </div>
+                            <div class="mt-2">
+                                <span class="text-[9px] uppercase tracking-widest {{ $product->stock <= 5 ? 'text-red-500 font-bold' : 'text-gray-400' }}">
+                                    {{ $product->stock <= 5 ? 'Hampir Habis' : 'Tersedia' }}: {{ $product->stock }}
+                                </span>
+                            </div>
                         </div>
                     @endforeach
                 </div>

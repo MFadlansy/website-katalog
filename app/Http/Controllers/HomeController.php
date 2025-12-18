@@ -15,12 +15,14 @@ class HomeController extends Controller
         $categories = Category::all();
         
         $featuredProducts = Product::where('is_active', true)
+                            ->where('stock', '>', 0)
                             ->where('is_featured', true)
                             ->latest()
                             ->take(8)
                             ->get();
 
         $latestProducts = Product::where('is_active', true)
+                            ->where('stock', '>', 0)
                             ->latest()
                             ->take(8)
                             ->get();
@@ -31,7 +33,7 @@ class HomeController extends Controller
     public function show($slug)
     {
         $shop = ShopSetting::first();
-        $product = Product::where('slug', $slug)->where('is_active', true)->firstOrFail();
+        $product = Product::where('slug', $slug)->where('is_active', true)->where('stock', '>', 0)->firstOrFail();
 
         $phone = $shop->whatsapp_number ?? '628000000'; 
 
@@ -55,7 +57,8 @@ class HomeController extends Controller
         $shop = ShopSetting::first();
         $categories = Category::all();
 
-        $query = Product::where('is_active', true);
+        $query = Product::where('is_active', true)
+                        ->where('stock', '>', 0);
 
         if ($request->has('kategori')) {
             $slug = $request->get('kategori');

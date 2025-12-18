@@ -16,4 +16,8 @@ class ListShopSettings extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+    protected function getRedirectUrl(): string
+    {
+        return parent::getRedirectUrl()::getUrl("index");
+    }
 }

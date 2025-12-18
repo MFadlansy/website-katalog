@@ -58,6 +58,12 @@ class ProductResource extends Resource
                 
                 Forms\Components\Toggle::make('is_featured')
                     ->label('Produk Unggulan'),
+
+                Forms\Components\TextInput::make('stock')
+                    ->label('Stok')
+                    ->required()
+                    ->numeric()
+                    ->default(0),
             ]);
     }
 
@@ -78,6 +84,10 @@ class ProductResource extends Resource
                     ->money('IDR', locale: 'id'), 
 
                 Tables\Columns\IconColumn::make('is_active')->boolean(),
+
+                Tables\Columns\TextColumn::make('stock')
+                    ->label('Stok')
+                    ->sortable(),
             ])
             ->filters([
                 //

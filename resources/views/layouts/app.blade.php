@@ -88,8 +88,8 @@
             <div>
                 <h3 class="font-bold text-black uppercase tracking-widest mb-4 text-xs">Social</h3>
                 <ul class="space-y-2">
-                    <li><a href="#" class="hover:underline">Instagram</a></li>
-                    <li><a href="#" class="hover:underline">WhatsApp</a></li>
+                    <li><a href="{{ $shop->instagram_link ?? '#' }}" class="hover:underline">Instagram</a></li>
+                    <!-- <li><a href="{{ $shop->whatsapp_number ?? '#' }}" class="hover:underline">WhatsApp</a></li> -->
                 </ul>
             </div>
         </div>
@@ -120,5 +120,6 @@
             }
         });
     </script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>

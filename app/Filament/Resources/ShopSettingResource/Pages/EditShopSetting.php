@@ -16,4 +16,8 @@ class EditShopSetting extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+    protected function getRedirectUrl(): string
+    {
+        return parent::getRedirectUrl()::getUrl("index");
+    }
 }

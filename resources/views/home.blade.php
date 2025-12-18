@@ -51,12 +51,24 @@
                         </a>
                     </div>
 
+                    <!-- <div class="text-center">
+                        <h3 class="text-sm text-gray-900 font-medium group-hover:text-gray-600 transition">
+                            <a href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a>
+                        </h3>
+                        <p class="text-sm text-gray-500 mt-1 font-serif">
+                            Rp {{ number_format($product->price, 0, ',', '.') }}
+                        </p>
+                    </div> -->
                     <div class="text-center">
                         <h3 class="text-sm text-gray-900 font-medium group-hover:text-gray-600 transition">
                             <a href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a>
                         </h3>
                         <p class="text-sm text-gray-500 mt-1 font-serif">
                             Rp {{ number_format($product->price, 0, ',', '.') }}
+                        </p>
+                        
+                        <p class="text-[10px] mt-2 uppercase tracking-tighter {{ $product->stock <= 5 ? 'text-red-500 font-bold' : 'text-gray-400' }}">
+                            Stok: {{ $product->stock }}
                         </p>
                     </div>
                 </div>
@@ -83,9 +95,9 @@
                     Setiap koleksi dikurasi dengan hati-hati, memadukan material terbaik dengan sentuhan desain modern.
                 </p>
                 <div>
-                    <a href="#" class="inline-block border-b border-black pb-1 text-xs font-bold uppercase tracking-widest hover:text-gray-600 transition">
+                    <!-- <a href="#" class="inline-block border-b border-black pb-1 text-xs font-bold uppercase tracking-widest hover:text-gray-600 transition">
                         Read Our Full Story
-                    </a>
+                    </a> -->
                 </div>
             </div>
         </div>

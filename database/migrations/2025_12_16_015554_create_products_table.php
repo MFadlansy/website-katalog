@@ -18,9 +18,10 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->decimal('price', 15, 2);
-            $table->json('images')->nullable(); // Wajib JSON untuk multi image
+            $table->json('images')->nullable(); 
             $table->boolean('is_active')->default(true);
             $table->boolean('is_featured')->default(false);
+            $table->integer('stock')->default(0);
             $table->timestamps();
         });
     }
