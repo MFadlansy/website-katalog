@@ -27,13 +27,17 @@ class HomeController extends Controller
                             ->take(8)
                             ->get();
 
-        return view('home', compact('shop', 'categories', 'featuredProducts', 'latestProducts'));
+        // Sesuaikan dengan view baru
+        return view('home.index', compact('shop', 'categories', 'featuredProducts', 'latestProducts'));
     }
 
     public function show($slug)
     {
         $shop = ShopSetting::first();
-        $product = Product::where('slug', $slug)->where('is_active', true)->where('stock', '>', 0)->firstOrFail();
+        $product = Product::where('slug', $slug)
+                    ->where('is_active', true)
+                    ->where('stock', '>', 0)
+                    ->firstOrFail();
 
         $phone = $shop->whatsapp_number ?? '628000000'; 
 
@@ -46,10 +50,10 @@ class HomeController extends Controller
                    "Harga: Rp " . number_format($product->price, 0, ',', '.') . "\n" .
                    "Apakah stoknya masih tersedia?";
 
-        
         $waUrl = "https://wa.me/{$phone}?text=" . urlencode($message);
 
-        return view('product-detail', compact('product', 'shop', 'waUrl'));
+        // Sesuaikan dengan view baru
+        return view('shop.detail', compact('product', 'shop', 'waUrl'));
     }
 
     public function shop(Request $request)
@@ -69,6 +73,7 @@ class HomeController extends Controller
 
         $products = $query->latest()->paginate(12);
 
-        return view('shop', compact('shop', 'categories', 'products'));
+        // Sesuaikan dengan view baru
+        return view('shop.index', compact('shop', 'categories', 'products'));
     }
 }
