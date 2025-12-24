@@ -129,12 +129,3 @@ Kontribusi selalu diterima! Silakan buat **Pull Request** atau laporkan masalah 
 5.  Buka Pull Request.
 
 ---
-
-## 📝 Lisensi
-
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
-
----
-<p align="center">
-  Dibuat dengan ❤️ oleh [Nama Anda]
-</p>
