@@ -5,7 +5,7 @@
 @section('content')
 
 <!-- Banner Section -->
-<div class="relative w-full h-screen overflow-hidden pt-20">
+<div class="relative w-full h-screen overflow-hidden pt-28 md:pt-32">
     <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop" 
          class="w-full h-full object-cover object-top" 
          alt="Banner">
@@ -20,69 +20,92 @@
 </div>
 
 <!-- Categories Scroll -->
-<div class="max-w-7xl mx-auto px-4 py-12 flex justify-center space-x-8 overflow-x-auto whitespace-nowrap" data-aos="fade-up" data-aos-delay="200">
+<!-- <div class="max-w-7xl mx-auto px-4 py-12 flex justify-center space-x-8 overflow-x-auto whitespace-nowrap" data-aos="fade-up" data-aos-delay="200">
     @foreach($categories as $cat)
         <a href="{{ route('shop', ['kategori' => $cat->slug]) }}" 
            class="text-gray-500 hover:text-black uppercase text-xs tracking-widest border-b-2 border-transparent hover:border-black pb-1 transition">
             {{ $cat->name }}
         </a>
     @endforeach
-</div>
+</div> -->
 
-<!-- New Arrivals -->
-<div id="katalog" class="max-w-7xl mx-auto px-4 pb-20">
-    <div class="text-center mb-12" data-aos="fade-up">
-        <h3 class="font-serif text-3xl text-brand-black">New Arrivals</h3>
-    </div>
+{{-- NEW ARRIVALS SECTION --}}
+<section id="katalog" class="relative bg-white pt-28 md:pt-36 pb-24">
+    <div class="max-w-7xl mx-auto px-4">
 
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
-        @foreach($featuredProducts as $product)
-            <div class="group cursor-pointer product-card rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
-                <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-                    <a href="{{ route('product.detail', $product->slug) }}">
-                        @if(!empty($product->images) && isset($product->images[0]))
-                            <img src="{{ asset('storage/' . $product->images[0]) }}" 
-                                alt="{{ $product->name }}" 
-                                class="product-img w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
-                        @else
-                            <div class="flex items-center justify-center h-full text-gray-300 font-serif">No Image</div>
-                        @endif
-                        
-                        <div class="absolute inset-x-0 bottom-0 bg-white bg-opacity-90 py-3 text-center uppercase text-xs tracking-widest opacity-0 group-hover:opacity-100 transition duration-300">
-                            View Detail
-                        </div>
-                    </a>
+        <div class="text-center mb-16" data-aos="fade-up">
+            <span class="text-xs uppercase tracking-[0.3em] text-gray-400 block mb-3">
+                Featured Collection
+            </span>
+            <h3 class="font-serif text-3xl md:text-4xl text-brand-black">
+                New Arrivals
+            </h3>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-14">
+            @foreach($featuredProducts as $product)
+                <div class="group cursor-pointer product-card rounded-xl overflow-hidden bg-white
+                            shadow-sm hover:shadow-xl transition-all duration-300"
+                     data-aos="fade-up"
+                     data-aos-delay="{{ $loop->index * 100 }}">
+
+                    <div class="relative aspect-[3/4] bg-gray-100 overflow-hidden">
+                        <a href="{{ route('product.detail', $product->slug) }}">
+                            @if(!empty($product->images) && isset($product->images[0]))
+                                <img src="{{ asset('storage/' . $product->images[0]) }}"
+                                     alt="{{ $product->name }}"
+                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            @else
+                                <div class="flex items-center justify-center h-full text-gray-300 font-serif">
+                                    No Image
+                                </div>
+                            @endif
+
+                            <div class="absolute inset-x-0 bottom-0 bg-white/90 py-3 text-center
+                                        uppercase text-[10px] tracking-[0.3em]
+                                        opacity-0 group-hover:opacity-100 transition">
+                                View Detail
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="text-center px-4 py-5">
+                        <h3 class="text-sm text-gray-900 font-medium group-hover:text-gray-600 transition">
+                            {{ $product->name }}
+                        </h3>
+
+                        <p class="text-sm text-gray-500 mt-1 font-serif">
+                            Rp {{ number_format($product->price, 0, ',', '.') }}
+                        </p>
+
+                        <p class="text-[10px] mt-3 uppercase tracking-widest
+                            {{ $product->stock <= 5 ? 'text-red-500 font-semibold' : 'text-gray-400' }}">
+                            Stok: {{ $product->stock }}
+                        </p>
+                    </div>
                 </div>
+            @endforeach
+        </div>
 
-                <div class="text-center p-4">
-                    <h3 class="text-sm text-gray-900 font-medium group-hover:text-gray-600 transition">
-                        <a href="{{ route('product.detail', $product->slug) }}">{{ $product->name }}</a>
-                    </h3>
-                    <p class="text-sm text-gray-500 mt-1 font-serif">
-                        Rp {{ number_format($product->price, 0, ',', '.') }}
-                    </p>
-                    <p class="text-[10px] mt-2 uppercase tracking-tighter {{ $product->stock <= 5 ? 'text-red-500 font-bold' : 'text-gray-400' }}">
-                        Stok: {{ $product->stock }}
-                    </p>
-                </div>
-            </div>
-        @endforeach
-    </div>
+        {{-- BUTTON --}}
+        <div class="text-center mt-20" data-aos="fade-up">
+            <a href="{{ route('shop') }}"
+               class="inline-flex items-center gap-2 border border-black px-10 py-4
+                      uppercase tracking-[0.3em] text-xs font-bold
+                      hover:bg-black hover:text-white transition">
+                Tampilkan Semua
+            </a>
+        </div>
 
-    <!-- Button Tampilkan Semua -->
-    <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
-        <a href="{{ route('shop') }}" 
-           class="inline-block bg-black text-white px-8 py-3 uppercase tracking-widest text-sm font-bold rounded-lg hover:bg-gray-800 transition duration-300 shadow-md hover:shadow-lg">
-            Tampilkan Semua
-        </a>
     </div>
-</div>
+</section>
+
 
 {{-- SECTION 1: PROFIL / OUR STORY --}}
 <section id="about" class="w-full bg-white border-t border-gray-100">
     <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="relative h-[60vh] md:h-auto overflow-hidden group" data-aos="fade-right">
-            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop" 
+            <img src="{{ asset('assets/images/Logo.jpeg') }}" 
                  alt="Our Story" 
                  class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
         </div>
