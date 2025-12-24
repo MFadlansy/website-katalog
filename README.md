@@ -33,11 +33,28 @@ Sebuah aplikasi **Website Katalog Produk** modern yang dirancang untuk menampilk
 
 ---
 
-<!-- ## 📸 Tangkapan Layar (Screenshots)
+## 📸 Tangkapan Layar (Screenshots)
 
-| Halaman Depan | Detail Produk | Panel Admin |
-|:---:|:---:|:---:|
-| ![Home](https://placehold.co/300x200?text=Frontend+Home) | ![Detail](https://placehold.co/300x200?text=Product+Detail) | ![Admin](https://placehold.co/300x200?text=Filament+Dashboard) | -->
+### Hero Section
+![Hero Section](screenshots/Hero-Section.png)
+
+### New Arrivals
+![New Arrivals](screenshots/New-Arrivals.png)
+
+### About
+![New Arrivals](screenshots/About.png)
+
+### Footer
+![New Arrivals](screenshots/Footer.png)
+
+### Katalog
+![New Arrivals](screenshots/Katalog.png)
+
+### Detail Produk
+![New Arrivals](screenshots/Detail.png)
+
+### Admin Panel
+![New Arrivals](screenshots/Admin-Panel.png)
 
 ---
 
