@@ -111,15 +111,31 @@
                 </p>
 
                 {{-- CTA --}}
-                <a href="{{ $waUrl }}" target="_blank"
-                   class="block w-full rounded-full
-                          bg-[#2a241b] text-[#f7f3ef]
-                          text-center py-4
-                          text-xs font-bold uppercase tracking-[0.25em]
-                          hover:bg-[#1f1a14]
-                          transition shadow-md hover:shadow-lg mb-12">
-                    Order via WhatsApp
+                <div class="space-y-4 mb-12">
+
+                <a href="{{ $waAdminUrl }}" target="_blank"
+                class="block w-full rounded-full
+                        bg-[#2a241b] text-[#f7f3ef]
+                        text-center py-4
+                        text-xs font-bold uppercase tracking-[0.25em]
+                        hover:bg-[#1f1a14]
+                        transition shadow-md hover:shadow-lg">
+                    Order via Admin
                 </a>
+
+                <a href="{{ $waOwnerUrl }}" target="_blank"
+                class="block w-full rounded-full
+                        border border-[#2a241b]
+                        text-[#2a241b]
+                        text-center py-4
+                        text-xs font-bold uppercase tracking-[0.25em]
+                        hover:bg-[#2a241b] hover:text-[#f7f3ef]
+                        transition shadow-md hover:shadow-lg">
+                    Order via Owner
+                </a>
+
+            </div>
+
 
                 {{-- DESCRIPTION --}}
                 <div class="border-t border-[#e5dfd6]

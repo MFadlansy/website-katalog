@@ -34,27 +34,61 @@ class HomeController extends Controller
     public function show($slug)
     {
         $shop = ShopSetting::first();
+
         $product = Product::where('slug', $slug)
-                    ->where('is_active', true)
-                    ->where('stock', '>', 0)
-                    ->firstOrFail();
+            ->where('is_active', true)
+            ->where('stock', '>', 0)
+            ->firstOrFail();
 
-        $phone = $shop->whatsapp_number ?? '628000000'; 
+        /*
+        |------------------------------------------------------------
+        | WhatsApp Numbers
+        |------------------------------------------------------------
+        */
+        $adminPhone = '08114692424'; // Admin Fardhan
+        $ownerPhone = '0811421415';  // Owner
 
-        if (substr($phone, 0, 1) == '0') {
-            $phone = '62' . substr($phone, 1);
-        }
+        // Normalisasi nomor (0xxx -> 62xxx)
+        $normalizePhone = function ($phone) {
+            if (substr($phone, 0, 1) === '0') {
+                return '62' . substr($phone, 1);
+            }
+            return $phone;
+        };
 
-        $message = "Halo Admin, saya tertarik dengan produk ini:\n\n" .
-                   "Nama: *" . $product->name . "*\n" .
-                   "Harga: Rp " . number_format($product->price, 0, ',', '.') . "\n" .
-                   "Apakah stoknya masih tersedia?";
+        $adminPhone = $normalizePhone($adminPhone);
+        $ownerPhone = $normalizePhone($ownerPhone);
 
-        $waUrl = "https://wa.me/{$phone}?text=" . urlencode($message);
+        /*
+        |------------------------------------------------------------
+        | WhatsApp Message
+        |------------------------------------------------------------
+        */
+        $message = 
+            "Halo, saya tertarik dengan produk berikut:\n\n" .
+            "Nama: *{$product->name}*\n" .
+            "Harga: Rp " . number_format($product->price, 0, ',', '.') . "\n" .
+            "Apakah barangnya masih tersedia?\n\n" .
+            "Terima kasih.";
 
-        // Sesuaikan dengan view baru
-        return view('shop.detail', compact('product', 'shop', 'waUrl'));
+        $encodedMessage = urlencode($message);
+
+        /*
+        |------------------------------------------------------------
+        | WhatsApp URLs
+        |------------------------------------------------------------
+        */
+        $waAdminUrl = "https://wa.me/{$adminPhone}?text={$encodedMessage}";
+        $waOwnerUrl = "https://wa.me/{$ownerPhone}?text={$encodedMessage}";
+
+        return view('shop.detail', compact(
+            'product',
+            'shop',
+            'waAdminUrl',
+            'waOwnerUrl'
+        ));
     }
+
 
     public function shop(Request $request)
     {

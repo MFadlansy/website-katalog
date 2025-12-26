@@ -28,6 +28,51 @@
             }
         }
     </script>
+    <style>
+    /* Tombol navigasi */
+    .featuredSwiper .swiper-button-prev,
+    .featuredSwiper .swiper-button-next {
+        width: 44px;
+        height: 44px;
+        border-radius: 9999px;
+        background-color: rgba(245, 243, 239, 0.95);
+        border: 1px solid #2a241b;
+        color: #2a241b;
+        transition: all 0.3s ease;
+    }
+
+    /* Icon panah */
+    .featuredSwiper .swiper-button-prev::after,
+    .featuredSwiper .swiper-button-next::after {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    /* Hover */
+    .featuredSwiper .swiper-button-prev:hover,
+    .featuredSwiper .swiper-button-next:hover {
+        background-color: #2a241b;
+        color: #f5f3ef;
+        transform: scale(1.05);
+    }
+
+    /* Posisi tombol */
+    .featuredSwiper .swiper-button-prev {
+        left: -12px;
+    }
+
+    .featuredSwiper .swiper-button-next {
+        right: -12px;
+    }
+
+    /* Sembunyikan tombol di mobile */
+    @media (max-width: 640px) {
+        .featuredSwiper .swiper-button-prev,
+        .featuredSwiper .swiper-button-next {
+            display: none;
+        }
+    }
+</style>
 
     <style>
         html { scroll-behavior: smooth; }
@@ -35,6 +80,10 @@
         .product-card:hover .product-img { transform: scale(1.02); }
         nav a.active { border-bottom: 2px solid #1a1a1a; font-weight: bold; }
     </style>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
 </head>
 <body class="bg-white text-brand-black antialiased">
 
@@ -60,6 +109,33 @@
     <script>
         if (window.location.pathname === '/') {
         }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        new Swiper(".featuredSwiper", {
+            loop: true,
+            spaceBetween: 24,
+            autoplay: {
+                delay: 3500,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.2,
+                },
+                640: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            },
+        });
     </script>
 </body>
 </html>

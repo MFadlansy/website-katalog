@@ -8,7 +8,7 @@
 <section
     class="relative min-h-[90vh] flex items-center"
     style="
-        background-image: url('{{ asset('assets/images/hero-banner.png') }}');
+        background-image: url('{{ asset('assets/images/hero-banner2.png') }}');
         background-size: cover;
         background-position: right center;
         background-repeat: no-repeat;
@@ -77,6 +77,7 @@
 <section id="katalog" class="relative bg-[#f7f3ef] pt-28 md:pt-20 pb-24">
     <div class="max-w-7xl mx-auto px-4">
 
+        {{-- Header --}}
         <div class="text-center mb-16" data-aos="fade-up">
             <span class="text-xs uppercase tracking-[0.3em] text-[#a89f94] block mb-3">
                 Featured Collection
@@ -86,51 +87,65 @@
             </h3>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-14">
-            @foreach($featuredProducts as $product)
-                <div class="group cursor-pointer rounded-xl overflow-hidden
-                            bg-[#fdfcfb]
-                            shadow-sm hover:shadow-xl transition-all duration-300"
-                     data-aos="fade-up"
-                     data-aos-delay="{{ $loop->index * 100 }}">
+        {{-- Swiper --}}
+        <div class="relative">
+            <div class="swiper featuredSwiper">
+                <div class="swiper-wrapper">
 
-                    <div class="relative aspect-[3/4] bg-[#eae6df] overflow-hidden">
-                        <a href="{{ route('product.detail', $product->slug) }}">
-                            @if(!empty($product->images) && isset($product->images[0]))
-                                <img src="{{ asset('storage/' . $product->images[0]) }}"
-                                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                            @else
-                                <div class="flex items-center justify-center h-full text-[#c9c3b8] font-serif">
-                                    No Image
+                    @foreach($featuredProducts as $product)
+                        <div class="swiper-slide">
+                            <div class="group cursor-pointer rounded-xl overflow-hidden
+                                        bg-[#fdfcfb]
+                                        shadow-sm hover:shadow-xl transition-all duration-300"
+                                 data-aos="fade-up"
+                                 data-aos-delay="{{ $loop->index * 100 }}">
+
+                                <div class="relative aspect-[3/4] bg-[#eae6df] overflow-hidden">
+                                    <a href="{{ route('product.detail', $product->slug) }}">
+                                        @if(!empty($product->images) && isset($product->images[0]))
+                                            <img src="{{ asset('storage/' . $product->images[0]) }}"
+                                                 class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                        @else
+                                            <div class="flex items-center justify-center h-full text-[#c9c3b8] font-serif">
+                                                No Image
+                                            </div>
+                                        @endif
+
+                                        <div class="absolute inset-x-0 bottom-0 bg-[#f5f3ef]/95 py-3 text-center
+                                                    uppercase text-[10px] tracking-[0.3em] text-[#2a241b]
+                                                    opacity-0 group-hover:opacity-100 transition">
+                                            View Detail
+                                        </div>
+                                    </a>
                                 </div>
-                            @endif
 
-                            <div class="absolute inset-x-0 bottom-0 bg-[#f5f3ef]/95 py-3 text-center
-                                        uppercase text-[10px] tracking-[0.3em] text-[#2a241b]
-                                        opacity-0 group-hover:opacity-100 transition">
-                                View Detail
+                                <div class="text-center px-4 py-5">
+                                    <h3 class="text-sm font-medium text-[#2a241b] group-hover:text-[#6f665c] transition">
+                                        {{ $product->name }}
+                                    </h3>
+
+                                    <p class="text-sm text-[#7d746a] mt-1 font-serif">
+                                        Rp {{ number_format($product->price, 0, ',', '.') }}
+                                    </p>
+
+                                    <p class="text-[10px] mt-3 uppercase tracking-widest
+                                        {{ $product->stock <= 5 ? 'text-red-500 font-semibold' : 'text-[#a89f94]' }}">
+                                        Stok: {{ $product->stock }}
+                                    </p>
+                                </div>
                             </div>
-                        </a>
-                    </div>
+                        </div>
+                    @endforeach
 
-                    <div class="text-center px-4 py-5">
-                        <h3 class="text-sm font-medium text-[#2a241b] group-hover:text-[#6f665c] transition">
-                            {{ $product->name }}
-                        </h3>
-
-                        <p class="text-sm text-[#7d746a] mt-1 font-serif">
-                            Rp {{ number_format($product->price, 0, ',', '.') }}
-                        </p>
-
-                        <p class="text-[10px] mt-3 uppercase tracking-widest
-                            {{ $product->stock <= 5 ? 'text-red-500 font-semibold' : 'text-[#a89f94]' }}">
-                            Stok: {{ $product->stock }}
-                        </p>
-                    </div>
                 </div>
-            @endforeach
+
+                {{-- Navigation --}}
+                <div class="swiper-button-prev !text-[#2a241b]"></div>
+                <div class="swiper-button-next !text-[#2a241b]"></div>
+            </div>
         </div>
 
+        {{-- Button --}}
         <div class="text-center mt-20" data-aos="fade-up">
             <a href="{{ route('shop') }}"
                class="inline-flex items-center gap-2
@@ -144,6 +159,7 @@
 
     </div>
 </section>
+
 
 {{-- SECTION 1: PROFIL / OUR STORY --}}
 <section id="about" class="w-full bg-[#f7f3ef] border-t border-[#e6dfd6]">
@@ -164,13 +180,17 @@
             </h2>
 
             <p class="text-[#5e554b] font-light leading-relaxed mb-6 text-justify">
-                <strong>Irwandhy Official</strong> adalah brand kreatif di bidang fashion, entertainment, dan event management
-                yang menghadirkan karya berkarakter kuat, berkelas, dan penuh nilai artistik.
+                <strong>Irwandhy Official</strong> adalah brand kreatif di bidang fashion, entertainment, dan event management 
+                yang berfokus pada penciptaan karya berkarakter kuat, berkelas, dan penuh nilai artistik. 
+                Brand ini hadir sebagai ruang kolaborasi antara kreativitas, estetika, dan profesionalisme, 
+                dengan visi menghadirkan karya yang tidak hanya indah secara visual, tetapi juga memiliki cerita, 
+                konsep, dan pesan yang bermakna.
             </p>
 
             <p class="text-[#5e554b] font-light leading-relaxed text-justify">
-                Kami menjunjung tinggi profesionalisme, keamanan, dan nilai artistik dalam setiap proses
-                untuk menciptakan pengalaman yang berkesan.
+                Dalam setiap karyanya, <strong>Irwandhy Official</strong> secara konsisten mengangkat unsur budaya, keunikan konsep, 
+                serta pendekatan personal. Setiap busana, event, maupun produksi dikurasi dengan detail dan sentuhan artistik, 
+                sehingga terasa eksklusif dan berbeda terasa memiliki jiwa.
             </p>
         </div>
 
