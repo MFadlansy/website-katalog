@@ -45,6 +45,8 @@ class ProductResource extends Resource
                     ->prefix('Rp'),
 
                 Forms\Components\FileUpload::make('images')
+                    ->disk('public')          
+                    ->directory('products')
                     ->multiple()            
                     ->reorderable()         
                     ->directory('products') 
@@ -72,6 +74,7 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\ImageColumn::make('images')
+                    ->disk('public')
                     ->circular()
                     ->stacked()
                     ->limit(3),
